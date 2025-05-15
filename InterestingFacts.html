@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Wind Turbines</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="A simple breakdown on wind turbines">
+		<meta name="keywords" content="wind, wind turbines, green energy, renewable energy, towers, wind mills">
+		<meta name="author" content="Christian Torres">
+		<link rel="stylesheet" type="text/css" href="Wind_Turbines.css">
+	</head>
+
+	<body>
+		<header>
+			<div class="logo">Wind Turbines</div>
+		</header>
+		
+		<nav>
+			<ul>
+				<li> <a href="index.html">Home</a></li>
+				<li> <a href="ALookInside.html">A look inside</a></li>
+				<li> <a class="active" href="InterestingFacts.html">Interesting Facts</a></li>
+				<li> <a href="Form.html">Form</a></li>
+				<li> <a href="OurCommunity.html">Our Community</a></li>
+				<li> <a href="About.html">About</a></li>
+			</ul>
+		</nav>
+		<hr>
+		
+		<h1>Interesting Facts about Wind Turbines</h1>
+		
+		  <h2>Bird Migration Safety</h2>
+		  <p>Wind turbines are sometimes designed to temporarily halt their operations during peak bird migration periods to reduce the risk of collisions. 
+		  This practice, often called 
+		  <a href="https://rewi.org/guide/chapters/04-minimizing-collision-risk-to-wildlife-during-operations/minimization-curtailment/" target="_blank" rel="noopener noreferrer">turbine curtailment</a>,
+		  slows or stops the blades when large flocks are detected, creating a safer passage for migrating birds. 
+		  Although curtailment may lead to brief interruptions in energy production, the conservation benefits for bird populations are significant. 
+		  As wind energy technology continues to advance, integrating such adaptive measures is key to balancing renewable energy production with wildlife protection.
+		  </p>
+		
+		  <h2>Bat Deterrence Technology</h2>
+		  <p> <a href="https://www.energy.gov/eere/success-stories/articles/concept-commercialization-bat-deterrent-wind-energy-goes-global" target="_blank" rel="noopener noreferrer">Bat deterrence technology</a> 
+		  on wind turbines is a promising innovation aimed at reducing bat fatalities. 
+		  Typically, these systems use ultrasonic acoustic deterrents that emit high-frequency sounds, which are inaudible to humans but uncomfortable for bats. 
+		  When activated during periods of high bat activity, these deterrents encourage bats to steer clear of turbine blades, thereby lowering the risk of collision. 
+		  As a result, wind farms using such technology have recorded significant reductions in bat mortality while maintaining energy production efficiency.
+		  </p>
+		  
+		<button id="showAnimationBtn">Click for Bird Animation</button>
+		
+		<p>Drag the gease and bat images to the rectangle:</p>
+
+		<div id="div1" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+		<br>
+		<img id="drag1" src="Images/birdsT.jpg" alt="birds and turbine" draggable="true" ondragstart="dragstartHandler(event)" width="200" height="200">
+		<img id="drag2" src="Images/bats.jpg" alt="birds and turbine" draggable="true" ondragstart="dragstartHandler(event)" width="200" height="200">
+		
+	  	<footer>
+			<p>&#169;2025 Wind Turbines WEBD221 Assignment Christian Torres</p>
+			<figure>
+				<a href="https://mktest.com/wind-turbine-components/" target="_blank">
+				<img style="width:70px; height:60px; border-bottom:2px solid black" src="Images/MK_Test_Systems.jpg" alt="Wind turbine components">
+				</a>
+				<figcaption>Learn more at MK Test Systems</figcaption>
+			</figure>
+		</footer>
+		
+		<script>
+			const btn = document.getElementById("showAnimationBtn");
+
+			 btn.addEventListener("click", () => {
+
+			const bird = document.createElement("img");
+
+			const existingBird = document.getElementById("flyingBird");
+			if (existingBird) {
+			  existingBird.remove();
+			}
+			bird.id = "flyingBird";
+			bird.src = "Images/birds.jpg";
+			bird.alt = "Flying birds";
+			document.body.appendChild(bird);
+
+			let birdPosition = -150;
+			const speed = 3.5;
+
+			function animateBird() {
+				birdPosition += speed;
+				if (birdPosition < window.innerWidth) {
+				bird.style.left = birdPosition + "px";
+				requestAnimationFrame(animateBird);
+				} else {
+					}
+			}
+
+			animateBird();
+		  });
+		  
+			function dragstartHandler(ev) {
+			  ev.dataTransfer.setData("text", ev.target.id);
+			}
+
+			function dragoverHandler(ev) {
+			  ev.preventDefault();
+			}
+
+			function dropHandler(ev) {
+			  ev.preventDefault();
+			  const data = ev.dataTransfer.getData("text");
+			  ev.target.appendChild(document.getElementById(data));
+			}
+		</script>
+		
+	</body>
+</html>
